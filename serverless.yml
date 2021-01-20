@@ -1,0 +1,19 @@
+service: "serverless-chatroom-demo"
+
+custom:
+  tableName: "serverless-chatroom-demo-table-${self:provider.stage}"
+
+provider:
+  name: "aws"
+  runtime: "nodejs12.x"
+  stage: "dev"
+  region: "us-east-1"
+
+functions:
+  createChatMessage:
+    handler: handler.hello
+    events:
+      - http:
+          method: POST
+          path: /messages
+          private: false
