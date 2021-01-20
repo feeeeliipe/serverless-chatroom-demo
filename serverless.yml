@@ -1,7 +1,17 @@
 service: "serverless-chatroom-demo"
 
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline #serverless-offline needs to be last in the list
+
 custom:
   tableName: "serverless-chatroom-demo-table-${self:provider.stage}"
+  dynamodb:
+    stages:
+      - dev
+    start:
+      port: 8000
+      migrate: true
 
 provider:
   name: "aws"

@@ -1,13 +1,24 @@
 "use strict";
 
 const AWS = require("aws-sdk");
-
 const MESSAGES_TABLE = process.env.MESSAGES_TABLE;
 const AWS_DEPLOY_REGION = process.env.AWS_DEPLOY_REGION;
-const dynamoDb = new AWS.DynamoDB.DocumentClient({
-  api_version: "2012-08-10",
-  region: AWS_DEPLOY_REGION,
-});
+
+// serverless-offline plugin set this env variable to 'true'
+const IS_OFFLINE = process.env.IS_OFFLINE;
+let dynamoDb;
+if (IS_OFFLINE === "true") {
+  dynamoDb = new AWS.DynamoDB.DocumentClient({
+    region: "localhost",
+    endpoint: "http://localhost:8000",
+  });
+  console.log("Using the offline DynamoDB instance");
+} else {
+  dynamoDb = new AWS.DynamoDB.DocumentClient({
+    api_version: "2012-08-10",
+    region: AWS_DEPLOY_REGION,
+  });
+}
 
 // /messages
 module.exports.createChatMessage = async (event, context) => {

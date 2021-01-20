@@ -1,0 +1,27 @@
+{
+  "name": "serverless-chatroom-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "dynamodb:local:install": "serverless dynamodb install",
+    "dynamodb:local:start": "serverless dynamodb start",
+    "deploy:aws": "serverless deploy",
+    "deploy:dev": "serverless offline start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feeeeliipe/serverless-chatroom-demo.git"
+  },
+  "author": "Felipe Gonçalves",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/feeeeliipe/serverless-chatroom-demo/issues"
+  },
+  "homepage": "https://github.com/feeeeliipe/serverless-chatroom-demo#readme",
+  "devDependencies": {
+    "serverless-dynamodb-local": "^0.2.39",
+    "serverless-offline": "^6.8.0"
+  }
+}
