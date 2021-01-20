@@ -40,6 +40,7 @@ module.exports.createChatMessage = async (event, context) => {
 
   const { messageId, datePosted, room, userId, message } = _parsed;
 
+  /*
   const params = {
     TableName: MESSAGES_TABLE,
     Item: {
@@ -49,6 +50,11 @@ module.exports.createChatMessage = async (event, context) => {
       userId,
       message,
     },
+  };
+  */
+  const params = {
+    TableName: MESSAGES_TABLE,
+    Item: _parsed,
   };
 
   try {
