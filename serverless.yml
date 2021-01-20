@@ -11,9 +11,30 @@ provider:
 
 functions:
   createChatMessage:
-    handler: handler.hello
+    handler: handler.createChatMessage
     events:
       - http:
           method: POST
           path: /messages
+          private: false
+  getMessage:
+    handler: handler.getMessage
+    events:
+      - http:
+          method: GET
+          path: /messages
+          private: false
+  getRoomMessages:
+    handler: handler.getRoomMessages
+    events:
+      - http:
+          method: GET
+          path: /messages/room/{room}
+          private: false
+  getUserMessages:
+    handler: handler.getUserMessages
+    events:
+      - http:
+          method: GET
+          path: /messages/user/{userId}
           private: false
